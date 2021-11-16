@@ -13,6 +13,7 @@ A simple 2d snake game made using opengl in c++
 * D - To go right
 * M - To change difficulty
 * H - For help
+* Esc or Q - To Exit
 
 ## Compilation and Execution
 To Compile
@@ -23,3 +24,12 @@ To run
 ```
 ./game
 ```
+
+## Dependencies
+For Ubuntu
+```
+ sudo apt install binutils-gold  g++ mesa-common-dev build-essential libglew1.5-dev libglm-dev
+ sudo apt install mesa-utils
+ sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+```
+
