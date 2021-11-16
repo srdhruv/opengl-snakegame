@@ -13,6 +13,7 @@ A simple 2d snake game made using opengl in c++
 * D - To go right
 * M - To change difficulty
 * H - For help
+* +/- - To change map size
 * Esc or Q - To Exit
 
 ## Compilation and Execution
