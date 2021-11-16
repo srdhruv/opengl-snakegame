@@ -1,10 +1,16 @@
+/***************************************************************************
+ * @author: Dhruv Rajendra Sawarkar
+ * Student @ Indian Institute of Information Technology Design and Manufacturing (IIITDM) Kancheepuram
+ * Code written for Interactive Computer Graphics Course (on Nov 2021)
+ *  
+****************************************************************************/
+
 #include <iostream>
 #include <GL/glut.h>
 #include <GL/freeglut.h>
 #include <deque>
 #include <assert.h>
 using namespace std;
-
 
 
 /**************************************************************************
@@ -21,7 +27,7 @@ using namespace std;
 #define wallColor    0.00,0.00,0.00
 #define splFoodColor 1.00,0.00,0.00
 
-int map_size = 50;     // keep value bw 10 and 50
+int map_size = 20;     // keep value bw 10 and 50
 int luck = 5;          // keep between 1 and 100 to get the easter egg food.
 int initialLives  = 5; // saves when you bit yourself
 int maxDifficulty = 7; // keep atleast 5.
@@ -70,7 +76,10 @@ void guide()
     printf("\nPress W for Up, A for left, S for Down and D for Right");
     printf("\nM to change difficuly.");
     printf("\nR to Restart Game.");
+    printf("\n+ to Increase map size.The game will restart though.");
+    printf("\n- to Decrease map size.The game will restart though.");
     printf("\nP to pause/resume the game.");
+    printf("\nPress Esc or Q to  Quit.");
     printf("\nPress H for help.");
     printf("\n\nPress P to Start.");
     printf("\n*********************************************************\n");
@@ -301,6 +310,7 @@ void display()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0,map_size,0,map_size);
+    // cout << "Map size is " << map_sizepwaa << endl;
     glMatrixMode(GL_MODELVIEW);
     drawSnake();
     drawFood();
@@ -309,18 +319,25 @@ void display()
     glutSwapBuffers();
 }
 
+void reshape(GLsizei,GLsizei)
+{
+    glutReshapeWindow(map_size*20,map_size*20);
+    // gluOrtho2D(0,map_size,0,map_size);
+
+}
 
 void initializeGame()
 {
 
     // some assertions
-    assert(map_size >= 10);
+    assert(map_size >= 15);
     assert(map_size <= 50);
     assert(luck <= 100);
     assert(luck >= 1);
     assert(maxDifficulty >= 5);
     assert(initialLives > 0);
     srand(time(0));
+    // glutOrtho2d()
 
     glClearColor(mapBgColor,0);
     score = 0;
@@ -417,17 +434,42 @@ void keyboard(unsigned char key,int,int){
         case 'R':
         case 'r':
         {
+
+            showFinalScore();
             cout << "You restarted the Game.\nRestarting...\n.All the best!!!.\n";
             initializeGame();
             break;
         }
 
+        case '=':
+        case '+':
+        {
+            if(map_size < 50)
+                map_size = map_size + 1;
+            glViewport(0,0,20*map_size,20*map_size);
+            showFinalScore();
+            initializeGame();
+            break;
+        }
+
+        case '_':
+        case '-':
+        {
+            if(map_size > 15)
+                map_size = map_size -1;
+            glViewport(0,0,20*map_size,20*map_size);
+            showFinalScore();
+            initializeGame();
+            break;
+        }
         case 27:
-        case 'q':{
+        case 'q':
+        {
             cout << "You pressed exit.\n";
             showFinalScore();
             exit(0);
         }
+
     }
 }
 
@@ -441,6 +483,7 @@ int main(int argc,char ** argv)
     glutCreateWindow("Snake Game");
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
+    glutReshapeFunc(reshape);
     glutTimerFunc(gameSpeed,TimerFunc,0);
     initializeGame();
     glutMainLoop();
