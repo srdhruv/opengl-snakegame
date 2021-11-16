@@ -16,7 +16,10 @@ A simple 2d snake game made using opengl in c++
 
 ## Compilation and Execution
 To Compile
-* g++ snakeGame.cpp -lglut -lGL -lGLEW -lGLU -o game
-
+```
+g++ snakeGame.cpp -lglut -lGL -lGLEW -lGLU -o game
+```
 To run
-* ./game
+```
+./game
+```
