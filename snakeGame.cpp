@@ -264,7 +264,7 @@ void moveSnake(int newDirection)
         }
     }
 
-    if(snake_body[0].first <= 0 || snake_body[0].first >= map_size -1 || snake_body[1].second <= 0 || snake_body[1].second >= map_size - 1)
+    if(snake_body[0].first <= 0 || snake_body[0].first >= map_size -1 || snake_body[0].second <= 0 || snake_body[0].second >= map_size - 1)
     {
         cout << "Oh NO! You ran into wall. Game Over.\n";
         showFinalScore();
