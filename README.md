@@ -30,7 +30,11 @@ To run
 For Ubuntu
 ```
  sudo apt install binutils-gold  g++ mesa-common-dev build-essential libglew1.5-dev libglm-dev
+ ```
+ ```
  sudo apt install mesa-utils
+ ```
+ ```
  sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
 ```
 
