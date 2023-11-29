@@ -29,7 +29,7 @@ To run
 ## Dependencies
 For Ubuntu
 ```
- sudo apt install binutils-gold  g++ mesa-common-dev build-essential libglew1.5-dev libglm-dev
+ sudo apt install binutils-gold  g++ mesa-common-dev build-essential libglew-dev libglm-dev
  ```
  ```
  sudo apt install mesa-utils
